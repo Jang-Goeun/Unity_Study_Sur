@@ -31,11 +31,15 @@ public class Enemy : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (!isLive)
-        {
+        if (!isLive) {
             return;
         }
 
         spriter.flipX = target.position.x < rigid.position.x;
+    }
+
+    private void OnEnable()
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 }
