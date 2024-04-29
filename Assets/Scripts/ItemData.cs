@@ -22,5 +22,5 @@ public class ItemData : ScriptableObject
 
     [Header("# Weapon")]
     public GameObject projecttile;
-
+    public Sprite hand;
 }
