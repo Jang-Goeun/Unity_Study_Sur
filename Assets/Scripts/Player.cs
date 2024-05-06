@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -24,12 +25,18 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         Vector2 nextvec = inputVec.normalized * speed * Time.fixedDeltaTime;
         //1. »˚¿ª ¡ÿ¥Ÿ.
         //rigid.AddForce(inputVec);
@@ -43,6 +50,9 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         anim.SetFloat("Speed", inputVec.magnitude);
         if(inputVec.x != 0) {
             spriter.flipX = (inputVec.x < 0);

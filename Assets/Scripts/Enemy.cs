@@ -27,8 +27,11 @@ public class Enemy : MonoBehaviour
         wait = new WaitForFixedUpdate();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit")) {
             return;
         }
@@ -40,6 +43,9 @@ public class Enemy : MonoBehaviour
     }
     void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isLive) {
             return;
         }
